@@ -1,19 +1,19 @@
 1. SELECT name, population
 FROM cities 
-where population > 1000000
+WHERE population > 1000000
 
 2. SELECT name, population, region
 FROM cities 
-where region = 'E' || region = 'W'
-order by population desc
+WHERE region = 'E' || region = 'W'
+ORDER BY population DESC
 
 3. SELECT name, population, region
 FROM cities 
-where population > 500000 && region in('S','C','N')
+WHERE population > 500000 && region IN('S','C','N')
 
 4. SELECT name, population, region
 FROM cities
-WHERE population > 150000 && population < 350000 && region in('E','W','N')
+WHERE population > 150000 && population < 350000 && region IN('E','W','N')
 LIMIT 20
 
 5. SELECT name, population, region
