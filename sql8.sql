@@ -37,6 +37,7 @@ CREATE TABLE task_user (
 
 CREATE TABLE file (
     file_id INT PRIMARY KEY,
+    file_name VARCHAR(255) NOT NULL,
     project_id INT,
     task_id INT,
     file_path VARCHAR(255) NOT NULL,
