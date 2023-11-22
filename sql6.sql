@@ -1,47 +1,30 @@
-1. SELECT cities.name AS Назва_міста, regions.name AS Назва_регіону
+SELECT cities.name, regions.name
+FROM cities, regions
+WHERE cities.region = regions.uuid AND cities.population > 350000;
+
+SELECT cities.name
 FROM cities
-JOIN regions ON cities.region = regions.uuid
-WHERE cities.population > 350000;
-2. SELECT cities.name AS Назва_міста
-FROM cities
-JOIN regions ON cities.region = regions.uuid
+INNER JOIN regions ON cities.region = regions.uuid
 WHERE regions.name = 'Nord';
-3. DROP TABLE IF EXISTS `stations`;
-CREATE TABLE `stations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `line` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+
+
+CREATE TABLE `lines` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL,
+  `color` VARCHAR(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `stations`(`id`, `name`, `line`) VALUES
-(1, 'Холодна гора' , 'Холодногірсько-Заводська'),
-(2, 'Південний вокзал' , 'Холодногірсько-Заводська'),
-(3, 'Центральний ринок' , 'Холодногірсько-Заводська'),
-(4, 'Майдан Конституції' , 'Холодногірсько-Заводська'),
-(5, 'Проспект Гагаріна' , 'Холодногірсько-Заводська'),
-(6, 'Завод ім. Малишева' , 'Холодногірсько-Заводська'),
-(7, 'Спортивна' , 'Холодногірсько-Заводська'),
-(8, 'Турбоатом' , 'Холодногірсько-Заводська'),
-(9, 'Дворець спорту' , 'Холодногірсько-Заводська'),
-(10, 'Армійська' , 'Холодногірсько-Заводська'),
-(11, 'Ім. О. С. Масельского' , 'Холодногірсько-Заводська'),
-(12, 'Тракторний завод' , 'Холодногірсько-Заводська'),
-(13, 'Індустріальна' , 'Холодногірсько-Заводська'),
-(14, 'Історичний музей' , 'Салтівська'),
-(15, 'Університет' , 'Салтівська'),
-(16, 'Пушкінська' , 'Салтівська'),
-(17, 'Київська' , 'Салтівська'),
-(18, 'Академіка Барабашова' , 'Салтівська'),
-(19, 'Академіка Павлова' , 'Салтівська'),
-(20, 'Студентська' , 'Салтівська'),
-(21, 'Героїв Праці' , 'Салтівська'),
-(22, 'Метробудівників' , 'Олексіївська'),
-(23, 'Захисників України' , 'Олексіївська'),
-(24, 'Архітектора Бекетова' , 'Олексіївська'),
-(25, 'Держпром' , 'Олексіївська'),
-(26, 'Наукова' , 'Олексіївська'),
-(27, 'Ботанічний сад' , 'Олексіївська'),
-(28, '23 Серпня' , 'Олексіївська'),
-(29, 'Олексіївська' , 'Олексіївська'),
-(30, 'Перемога' , 'Олексіївська');
+CREATE TABLE `stations` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL,
+  `line_id` INT(10) UNSIGNED NOT NULL,
+  `previous_station` INT(10) COLLATE utf8_unicode_ci,
+  `next_station` INT(10) COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `connections` (
+  `station_id_1` INT(10) UNSIGNED NOT NULL,
+  `station_id_2` INT(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
